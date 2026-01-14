@@ -6,7 +6,7 @@
 export const CONTRACTS = {
   // Mantle Testnet Sepolia (Chain ID: 5003)
   mantleTestnet: {
-    mockMETH: "0x0000000000000000000000000000000000000000" as `0x${string}`,
+    mETH: "0x0000000000000000000000000000000000000000" as `0x${string}`,
     rwaToken: "0x0000000000000000000000000000000000000000" as `0x${string}`,
     yieldVault: "0x0000000000000000000000000000000000000000" as `0x${string}`,
   },

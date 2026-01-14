@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.24;
 
 // =============================================================================
 // YieldVault.t.sol - Test Suite for Strata Protocol
@@ -198,17 +198,17 @@ contract YieldVaultTest is Test {
 
     function test_BuyDifferentAssets() public {
         uint256 depositAmount = 10 ether;
-        uint256 mockYieldAmount = 0.01 ether;
+        uint256 mockYieldAmount = 0.02 ether; // Enough to cover fees and buy fractions
 
         vm.startPrank(alice);
         mETH.approve(address(vault), depositAmount);
         vault.deposit(depositAmount, alice);
 
-        // Buy NYC Real Estate (default target)
+        // Buy NYC Real Estate (default target) - price is 0.01 ETH per fraction
         vault.mockYield(mockYieldAmount);
         vault.harvestAndBuy();
 
-        // Change target to Treasury Bonds
+        // Change target to Treasury Bonds - price is 0.001 ETH per fraction
         vault.setTargetAsset(2);
         vault.mockYield(mockYieldAmount);
         vault.harvestAndBuy();

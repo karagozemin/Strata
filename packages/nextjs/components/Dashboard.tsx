@@ -2,38 +2,90 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
-import { formatEther, parseEther } from "viem";
+import { useAccount } from "wagmi";
 import { YieldProgress } from "./YieldProgress";
 import { Portfolio } from "./Portfolio";
+import { RWAMarketplace } from "./RWAMarketplace";
+import { useYieldVault, useMETH } from "../hooks";
 
-// Contract addresses (update after deployment)
-const CONTRACTS = {
-  yieldVault: "0x0000000000000000000000000000000000000000" as `0x${string}`,
-  rwaToken: "0x0000000000000000000000000000000000000000" as `0x${string}`,
-  mockMETH: "0x0000000000000000000000000000000000000000" as `0x${string}`,
+// Asset names mapping
+const ASSET_NAMES: Record<number, string> = {
+  1: "NYC Real Estate",
+  2: "Treasury Bonds",
+  3: "Invoice Financing",
+  4: "Infrastructure",
 };
 
 export function Dashboard() {
   const { address } = useAccount();
   const [depositAmount, setDepositAmount] = useState("");
-  const [activeTab, setActiveTab] = useState<"deposit" | "portfolio">("deposit");
+  const [activeTab, setActiveTab] = useState<"deposit" | "portfolio" | "marketplace">("deposit");
 
-  // Mock data for UI development (replace with real contract calls)
-  const mockDashboardData = {
-    principal: "10.5",
-    pendingYield: "0.0234",
-    totalHarvested: "0.156",
-    rwaValue: "0.142",
-    targetAsset: "NYC Real Estate",
-    progressPercent: 67,
+  // Use custom hooks for contract interactions
+  const {
+    dashboard,
+    yieldProgress,
+    protocolStats,
+    isLoading,
+    isWritePending,
+    isConfirming,
+    deposit,
+    harvestAndBuy,
+    mockYield,
+    refetch,
+  } = useYieldVault();
+
+  const { balance: mETHBalance, approve, approveMax, isPending: isApproving } = useMETH();
+
+  // Fallback data for when contracts aren't deployed
+  const displayData = dashboard || {
+    principal: "0",
+    pendingYield: "0",
+    totalHarvested: "0",
+    rwaValue: "0",
+    targetAssetId: 1,
   };
 
-  const mockProtocolStats = {
-    tvl: "12,450",
-    totalUsers: "1,247",
-    totalYield: "234.5",
-    rwaValue: "2,150",
+  const displayProgress = yieldProgress || {
+    progressPercent: 0,
+  };
+
+  const displayStats = protocolStats || {
+    totalDeposits: "0",
+    totalUsers: 0,
+    protocolYield: "0",
+    rwaValue: "0",
+  };
+
+  // Handlers
+  const handleDeposit = async () => {
+    if (!depositAmount) return;
+    try {
+      await approveMax();
+      await deposit(depositAmount);
+      setDepositAmount("");
+      refetch();
+    } catch (error) {
+      console.error("Deposit failed:", error);
+    }
+  };
+
+  const handleHarvest = async () => {
+    try {
+      await harvestAndBuy();
+      refetch();
+    } catch (error) {
+      console.error("Harvest failed:", error);
+    }
+  };
+
+  const handleMockYield = async () => {
+    try {
+      await mockYield("0.01");
+      refetch();
+    } catch (error) {
+      console.error("Mock yield failed:", error);
+    }
   };
 
   return (
@@ -48,6 +100,9 @@ export function Dashboard() {
           Welcome back, <span className="text-gradient">{address?.slice(0, 8)}...</span>
         </h1>
         <p className="text-gray-400">Your yield is working hard to build real wealth</p>
+        {mETHBalance && parseFloat(mETHBalance) > 0 && (
+          <p className="text-sm text-mantle-400 mt-1">Balance: {parseFloat(mETHBalance).toFixed(4)} mETH</p>
+        )}
       </motion.div>
 
       {/* Stats Overview */}
@@ -59,19 +114,19 @@ export function Dashboard() {
       >
         <div className="stat-card">
           <span className="stat-label">Principal Staked</span>
-          <span className="stat-value text-white">{mockDashboardData.principal} mETH</span>
+          <span className="stat-value text-white">{parseFloat(displayData.principal).toFixed(4)} mETH</span>
         </div>
         <div className="stat-card">
           <span className="stat-label">Pending Yield</span>
-          <span className="stat-value text-mantle-400">{mockDashboardData.pendingYield} mETH</span>
+          <span className="stat-value text-mantle-400">{parseFloat(displayData.pendingYield).toFixed(6)} mETH</span>
         </div>
         <div className="stat-card">
           <span className="stat-label">Total Harvested</span>
-          <span className="stat-value text-brick-400">{mockDashboardData.totalHarvested} mETH</span>
+          <span className="stat-value text-brick-400">{parseFloat(displayData.totalHarvested).toFixed(4)} mETH</span>
         </div>
         <div className="stat-card">
           <span className="stat-label">RWA Value</span>
-          <span className="stat-value text-gradient">{mockDashboardData.rwaValue} ETH</span>
+          <span className="stat-value text-gradient">{parseFloat(displayData.rwaValue).toFixed(4)} ETH</span>
         </div>
       </motion.div>
 
@@ -106,6 +161,16 @@ export function Dashboard() {
             >
               RWA Portfolio
             </button>
+            <button
+              onClick={() => setActiveTab("marketplace")}
+              className={`flex-1 py-3 rounded-lg font-medium transition-all ${
+                activeTab === "marketplace"
+                  ? "bg-dark-600 text-white"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
+              Marketplace
+            </button>
           </div>
 
           {activeTab === "deposit" ? (
@@ -126,23 +191,27 @@ export function Dashboard() {
                       />
                       <button
                         className="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1 text-sm text-mantle-400 hover:bg-dark-600 rounded-lg transition-colors"
-                        onClick={() => setDepositAmount("10")}
+                        onClick={() => setDepositAmount(mETHBalance || "10")}
                       >
                         MAX
                       </button>
                     </div>
                   </div>
-                  <button className="btn-primary w-full">
-                    Deposit mETH
+                  <button 
+                    className="btn-primary w-full disabled:opacity-50"
+                    onClick={handleDeposit}
+                    disabled={isWritePending || isConfirming || isApproving || !depositAmount}
+                  >
+                    {isApproving ? "Approving..." : isWritePending ? "Depositing..." : isConfirming ? "Confirming..." : "Deposit mETH"}
                   </button>
                 </div>
               </div>
 
               {/* Yield Progress */}
               <YieldProgress
-                currentYield={mockDashboardData.pendingYield}
-                targetAsset={mockDashboardData.targetAsset}
-                progressPercent={mockDashboardData.progressPercent}
+                currentYield={displayData.pendingYield}
+                targetAsset={ASSET_NAMES[displayData.targetAssetId] || "NYC Real Estate"}
+                progressPercent={displayProgress.progressPercent}
               />
 
               {/* Harvest Card */}
@@ -151,18 +220,24 @@ export function Dashboard() {
                   <div>
                     <h3 className="text-lg font-bold">Ready to Harvest</h3>
                     <p className="text-gray-400 text-sm">
-                      Convert {mockDashboardData.pendingYield} mETH yield to RWA
+                      Convert {parseFloat(displayData.pendingYield).toFixed(6)} mETH yield to RWA
                     </p>
                   </div>
                   <span className="text-4xl">🌾</span>
                 </div>
-                <button className="btn-primary w-full">
-                  Harvest & Buy RWA
+                <button 
+                  className="btn-primary w-full disabled:opacity-50"
+                  onClick={handleHarvest}
+                  disabled={isWritePending || isConfirming || parseFloat(displayData.pendingYield) === 0}
+                >
+                  {isWritePending || isConfirming ? "Processing..." : "Harvest & Buy RWA"}
                 </button>
               </div>
             </div>
-          ) : (
+          ) : activeTab === "portfolio" ? (
             <Portfolio />
+          ) : (
+            <RWAMarketplace />
           )}
         </motion.div>
 
@@ -207,19 +282,19 @@ export function Dashboard() {
             <div className="space-y-3">
               <div className="flex justify-between">
                 <span className="text-gray-400">Total Value Locked</span>
-                <span className="font-mono">{mockProtocolStats.tvl} mETH</span>
+                <span className="font-mono">{parseFloat(displayStats.totalDeposits).toFixed(2)} mETH</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">Total Users</span>
-                <span className="font-mono">{mockProtocolStats.totalUsers}</span>
+                <span className="font-mono">{displayStats.totalUsers}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">Yield Harvested</span>
-                <span className="font-mono text-mantle-400">{mockProtocolStats.totalYield} mETH</span>
+                <span className="font-mono text-mantle-400">{parseFloat(displayStats.protocolYield).toFixed(4)} mETH</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">RWA Purchased</span>
-                <span className="font-mono text-brick-400">${mockProtocolStats.rwaValue}k</span>
+                <span className="font-mono text-brick-400">{parseFloat(displayStats.rwaValue).toFixed(4)} ETH</span>
               </div>
             </div>
           </div>
@@ -233,11 +308,18 @@ export function Dashboard() {
             <p className="text-gray-400 text-sm mb-4">
               Simulate yield generation for hackathon demo
             </p>
-            <button className="btn-secondary w-full mb-2">
+            <button 
+              className="btn-secondary w-full mb-2"
+              onClick={() => {/* TODO: Implement faucet */}}
+            >
               🚰 Get Test mETH
             </button>
-            <button className="btn-secondary w-full">
-              ⚡ Generate Mock Yield
+            <button 
+              className="btn-secondary w-full disabled:opacity-50"
+              onClick={handleMockYield}
+              disabled={isWritePending || isConfirming}
+            >
+              {isWritePending || isConfirming ? "Processing..." : "⚡ Generate Mock Yield"}
             </button>
           </div>
         </motion.div>
