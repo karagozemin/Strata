@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-dark-900 text-white min-h-screen;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+    @apply bg-gradient-to-r from-brick-500 to-brick-600;
+    @apply hover:from-brick-400 hover:to-brick-500;
+    @apply hover:shadow-lg hover:shadow-brick-500/25;
+    @apply active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+    @apply bg-dark-700 border border-dark-600;
+    @apply hover:bg-dark-600 hover:border-mantle-500/50;
+    @apply active:scale-95;
+  }
+
+  .card {
+    @apply bg-dark-800/50 backdrop-blur-xl rounded-2xl;
+    @apply border border-dark-600/50;
+    @apply p-6;
+  }
+
+  .card-glow {
+    @apply card;
+    @apply hover:border-mantle-500/30 hover:shadow-lg hover:shadow-mantle-500/10;
+    @apply transition-all duration-300;
+  }
+
+  .stat-card {
+    @apply card;
+    @apply flex flex-col gap-2;
+  }
+
+  .stat-label {
+    @apply text-sm text-gray-400 uppercase tracking-wider;
+  }
+
+  .stat-value {
+    @apply text-2xl font-bold font-mono;
+  }
+
+  .progress-bar {
+    @apply h-2 bg-dark-700 rounded-full overflow-hidden;
+  }
+
+  .progress-bar-fill {
+    @apply h-full bg-gradient-to-r from-mantle-400 to-brick-500;
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl;
+    @apply bg-dark-700 border border-dark-600;
+    @apply focus:border-mantle-500 focus:ring-2 focus:ring-mantle-500/20;
+    @apply outline-none transition-all duration-200;
+    @apply placeholder:text-gray-500;
+  }
+
+  .asset-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm;
+    @apply bg-dark-700/50 border border-dark-600;
+  }
+
+  .glow-text {
+    @apply bg-gradient-to-r from-mantle-400 via-brick-400 to-mantle-400;
+    @apply bg-clip-text text-transparent;
+    @apply bg-[length:200%_auto] animate-gradient;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-mantle-400 to-brick-400 bg-clip-text text-transparent;
+  }
+
+  .bg-mesh {
+    background-image: 
+      radial-gradient(at 40% 20%, rgba(20, 184, 154, 0.15) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(236, 108, 40, 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(20, 184, 154, 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(236, 108, 40, 0.08) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(20, 184, 154, 0.1) 0px, transparent 50%);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-dark-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-dark-500;
+}

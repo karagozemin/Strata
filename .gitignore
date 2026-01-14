@@ -1,0 +1,40 @@
+# =============================================================================
+# YieldBrick - Git Ignore
+# =============================================================================
+
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env.*.local
+packages/foundry/.env
+
+# Dependencies
+node_modules/
+packages/nextjs/node_modules/
+
+# Build outputs
+out/
+cache/
+packages/foundry/out/
+packages/foundry/cache/
+packages/nextjs/.next/
+packages/nextjs/out/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Foundry
+broadcast/
+packages/foundry/broadcast/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Misc
+*.pem
