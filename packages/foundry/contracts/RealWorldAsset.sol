@@ -40,7 +40,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 /**
  * @title RealWorldAsset
- * @author YieldBrick Team - Mantle Hackathon 2025
+ * @author Strata Team - Mantle Hackathon 2025
  * @notice Fractionalized Real World Asset token using ERC-1155 standard
  * @dev Each token ID represents a different RWA class with unique pricing
  *

@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 // =============================================================================
-// YieldVault.t.sol - Test Suite for YieldBrick Protocol
+// YieldVault.t.sol - Test Suite for Strata Protocol
 // Mantle Global Hackathon 2025
 // =============================================================================
 
@@ -27,11 +27,11 @@ contract YieldVaultTest is Test {
 
         // Deploy contracts
         mETH = new MockMETH();
-        rwaToken = new RealWorldAsset("https://api.yieldbrick.xyz/metadata/");
+        rwaToken = new RealWorldAsset("https://api.Strata.xyz/metadata/");
         vault = new YieldVault(
             IERC20(address(mETH)),
             rwaToken,
-            "YieldBrick mETH Vault",
+            "Strata mETH Vault",
             "ybMETH"
         );
 

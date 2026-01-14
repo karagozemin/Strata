@@ -1,5 +1,5 @@
 # =============================================================================
-# YieldBrick - Makefile for Quick Commands
+# Strata - Makefile for Quick Commands
 # Mantle Global Hackathon 2025
 # =============================================================================
 
@@ -22,7 +22,7 @@ test-gas:
 
 # Deploy to Mantle Testnet
 deploy-testnet:
-	forge script script/Deploy.s.sol:DeployYieldBrick \
+	forge script script/Deploy.s.sol:DeployStrata \
 		--rpc-url https://rpc.sepolia.mantle.xyz \
 		--broadcast \
 		--verify \
@@ -30,7 +30,7 @@ deploy-testnet:
 
 # Deploy to local Anvil
 deploy-local:
-	forge script script/Deploy.s.sol:DeployYieldBrick \
+	forge script script/Deploy.s.sol:DeployStrata \
 		--rpc-url http://127.0.0.1:8545 \
 		--broadcast \
 		-vvvv

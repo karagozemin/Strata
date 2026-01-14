@@ -9,7 +9,7 @@ import { useState } from "react";
 
 // Configure chains - Mantle Testnet and Mainnet
 const config = getDefaultConfig({
-  appName: "YieldBrick",
+  appName: "Strata",
   projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "YOUR_PROJECT_ID",
   chains: [mantleSepoliaTestnet, mantle],
   transports: {

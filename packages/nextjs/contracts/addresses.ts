@@ -1,5 +1,5 @@
 // =============================================================================
-// Contract Addresses - YieldBrick
+// Contract Addresses - Strata
 // Update these after deployment to Mantle Testnet/Mainnet
 // =============================================================================
 

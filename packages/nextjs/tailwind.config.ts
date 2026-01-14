@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // YieldBrick Brand Colors
+        // Strata Brand Colors
         brick: {
           50: "#fef7f0",
           100: "#fdecd9",

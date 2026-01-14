@@ -90,7 +90,7 @@ export function Hero() {
               step: "01",
               title: "Stake mETH",
               description:
-                "Deposit your mETH into the YieldBrick vault. Your principal is always safe and withdrawable.",
+                "Deposit your mETH into the Strata vault. Your principal is always safe and withdrawable.",
               icon: "🔒",
             },
             {

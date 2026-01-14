@@ -1,4 +1,4 @@
-# 🏗️ YieldBrick
+# 🏗️ Strata
 
 ## Yield-Collateralized RWA Purchasing Protocol
 
@@ -31,7 +31,7 @@
 
 ## 💡 The Solution
 
-**YieldBrick** automatically converts your staking yield into fractionalized Real World Assets.
+**Strata** automatically converts your staking yield into fractionalized Real World Assets.
 
 - **Stake mETH** on Mantle Network
 - **Your principal stays 100% safe**
@@ -44,7 +44,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                          YieldBrick Protocol                                 │
+│                          Strata Protocol                                 │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                              │
 │   ┌────────────────┐                         ┌────────────────────────────┐ │
@@ -76,7 +76,7 @@
 
 ## 🌐 Mantle Ecosystem Alignment
 
-YieldBrick is **built specifically for Mantle Network**:
+Strata is **built specifically for Mantle Network**:
 
 | Feature | Mantle Advantage |
 |---------|------------------|
@@ -90,7 +90,7 @@ YieldBrick is **built specifically for Mantle Network**:
 ## 📦 Project Structure
 
 ```
-yieldbrick/
+Strata/
 ├── packages/
 │   ├── foundry/                    # Smart Contracts
 │   │   ├── contracts/
@@ -169,8 +169,8 @@ Fractionalized RWA tokens representing:
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/your-username/yieldbrick
-cd yieldbrick/packages/foundry
+git clone https://github.com/your-username/Strata
+cd Strata/packages/foundry
 
 # Install dependencies
 make install
@@ -211,7 +211,7 @@ make deploy-testnet
 **Deploy:**
 
 ```bash
-forge script script/Deploy.s.sol:DeployYieldBrick \
+forge script script/Deploy.s.sol:DeployStrata \
   --rpc-url https://rpc.sepolia.mantle.xyz \
   --broadcast \
   --verify \
@@ -301,8 +301,8 @@ MIT License - See [LICENSE](LICENSE) for details
 
 <div align="center">
 
-**🏗️ YieldBrick - Build Real Wealth From Your Yield**
+**🏗️ Strata - Build Real Wealth From Your Yield**
 
-[Demo](https://yieldbrick.xyz) · [Docs](https://docs.yieldbrick.xyz) · [Twitter](https://twitter.com/yieldbrick)
+[Demo](https://Strata.xyz) · [Docs](https://docs.Strata.xyz) · [Twitter](https://twitter.com/Strata)
 
 </div>

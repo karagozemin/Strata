@@ -1,5 +1,5 @@
 // =============================================================================
-// Contract ABIs - YieldBrick
+// Contract ABIs - Strata
 // Generated from Solidity contracts for frontend integration
 // =============================================================================
 

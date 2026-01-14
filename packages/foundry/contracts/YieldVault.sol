@@ -57,7 +57,7 @@ import "./RealWorldAsset.sol";
 
 /**
  * @title YieldVault
- * @author YieldBrick Team - Mantle Hackathon 2025
+ * @author Strata Team - Mantle Hackathon 2025
  * @notice ERC-4626 vault that converts yield into RWA purchases
  * @dev Core protocol contract implementing yield-to-RWA conversion
  *
@@ -198,7 +198,7 @@ contract YieldVault is ERC4626, Ownable, ReentrancyGuard {
      * @notice Deploy the YieldVault
      * @param _asset The underlying asset (mETH token address)
      * @param _rwaToken The RWA ERC-1155 contract address
-     * @param _name Vault token name (e.g., "YieldBrick mETH Vault")
+     * @param _name Vault token name (e.g., "Strata mETH Vault")
      * @param _symbol Vault token symbol (e.g., "ybMETH")
      *
      * Deployment steps:
@@ -389,7 +389,7 @@ contract YieldVault is ERC4626, Ownable, ReentrancyGuard {
      * @notice Harvest accumulated yield and purchase RWA fractions
      * @return fractionsBought Number of RWA fractions purchased
      * @return yieldUsed Amount of yield converted to RWA
-     * @dev This is the CORE INNOVATION of YieldBrick!
+     * @dev This is the CORE INNOVATION of Strata!
      *
      * ┌─────────────────────────────────────────────────────────────────────────┐
      * │                      harvestAndBuy() FLOW                               │
