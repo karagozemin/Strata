@@ -6,9 +6,9 @@
 export const CONTRACTS = {
   // Mantle Testnet Sepolia (Chain ID: 5003)
   mantleTestnet: {
-    mETH: "0x0000000000000000000000000000000000000000" as `0x${string}`,
-    rwaToken: "0x0000000000000000000000000000000000000000" as `0x${string}`,
-    yieldVault: "0x0000000000000000000000000000000000000000" as `0x${string}`,
+    mETH: "0xB7Ab966115aF7d21E7Aa6e31A9AdfC92291092E0" as `0x${string}`,
+    rwaToken: "0xa520c7Aa947f3B610d274377D261Eb5AcD70883F" as `0x${string}`,
+    yieldVault: "0x9C70C2F67028e5464F5b60E29648240e358E83B6" as `0x${string}`,
   },
   // Mantle Mainnet (Chain ID: 5000)
   mantleMainnet: {
