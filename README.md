@@ -1,7 +1,7 @@
 # Accrue
 
 <p align="center">
-  <img src="packages/nextjs/public/logo.png" alt="Accrue Logo" width="200"/>
+  <img src="packages/nextjs/public/logo.png" alt="Accrue Logo" width="180"/>
 </p>
 
 <h3 align="center">Yield-Collateralized RWA Purchasing Protocol</h3>
@@ -11,29 +11,93 @@
 </p>
 
 <p align="center">
-  <a href="https://mantle.xyz"><img src="https://img.shields.io/badge/Built%20on-Mantle-blue" alt="Built on Mantle"/></a>
-  <a href="https://soliditylang.org"><img src="https://img.shields.io/badge/Solidity-0.8.24-purple" alt="Solidity"/></a>
-  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"/></a>
+  <a href="https://mantle.xyz"><img src="https://img.shields.io/badge/Built%20on-Mantle-00D9A4?style=for-the-badge" alt="Built on Mantle"/></a>
+  <a href="https://soliditylang.org"><img src="https://img.shields.io/badge/Solidity-0.8.24-363636?style=for-the-badge" alt="Solidity"/></a>
+  <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-14-black?style=for-the-badge" alt="Next.js"/></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License: MIT"/></a>
 </p>
 
 <p align="center">
-  <b>Mantle Global Hackathon 2025 - RWA/RealFi Track</b>
+  <b>🏆 Mantle Global Hackathon 2025 - RWA/RealFi Track</b>
 </p>
+
+---
+
+## 📖 Table of Contents
+
+- [Overview](#-overview)
+- [The Problem](#-the-problem)
+- [The Solution](#-the-solution)
+- [Key Features](#-key-features)
+- [Architecture](#-architecture)
+- [Smart Contracts](#-smart-contracts)
+- [Tech Stack](#-tech-stack)
+- [Quick Start](#-quick-start)
+- [Deployment](#-deployment)
+- [Contract Addresses](#-contract-addresses)
+- [Demo Flow](#-demo-flow)
+- [Testing](#-testing)
+- [Security](#-security)
+- [Roadmap](#-roadmap)
+- [License](#-license)
+
+---
+
+## 🌟 Overview
+
+**Accrue** is a DeFi protocol that automatically converts your mETH staking yield into fractionalized Real World Assets (RWAs). Built on Mantle Network, it enables passive accumulation of tokenized real estate, bonds, and infrastructure investments—while keeping your principal 100% safe.
+
+> 💡 **TL;DR**: Deposit mETH → Earn yield → Yield auto-converts to real-world assets → Build wealth passively
 
 ---
 
 ## 🎯 The Problem
 
-**DeFi yields are fleeting.** Users stake their assets, earn APY, but the yield just... sits there. It gets swapped, spent, or slowly erodes to inflation. Meanwhile, Real World Assets (real estate, bonds, treasuries) remain inaccessible to most crypto users.
+**DeFi yields are ephemeral.** Users stake their assets, earn APY, but the yield just sits there—getting swapped, spent, or slowly eroding to inflation.
+
+Meanwhile, **Real World Assets remain inaccessible** to most crypto users due to:
+- 💰 High minimum investments ($10,000+)
+- 📋 Complex legal structures
+- 🌍 Geographic restrictions  
+- 🔒 Lack of liquidity
+
+---
 
 ## 💡 The Solution
 
-**Accrue** automatically converts your staking yield into fractionalized Real World Assets.
+**Accrue** bridges DeFi yields with real-world ownership:
 
-- **Stake mETH** on Mantle Network
-- **Your principal stays 100% safe**
-- **Yield automatically purchases** tokenized real estate, bonds, and more
-- **Build a diversified RWA portfolio** passively
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                             │
+│   💰 mETH Deposit  →  📈 Yield Generated  →  🏠 RWA Purchased              │
+│                                                                             │
+│   Your principal         Protocol harvests       Fractionalized assets     │
+│   stays 100% safe        yield automatically     added to your portfolio   │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### How It Works
+
+1. **Deposit mETH** into the Accrue vault
+2. **Select Target Asset** (Real Estate, Bonds, Invoice Financing, Infrastructure)
+3. **Yield Accumulates** from mETH staking rewards
+4. **Harvest & Buy** converts yield to RWA fractions automatically
+5. **Build Portfolio** of real-world assets over time
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+|---------|-------------|
+| 🔐 **Principal Safety** | Your deposited mETH is never at risk—only yield is used |
+| 🏠 **Auto RWA Accumulation** | Yield automatically converts to real assets |
+| 📊 **Diversified Portfolio** | Choose from 4 asset classes |
+| ⛽ **Low Gas Costs** | Mantle L2 enables micro-transactions |
+| 🔗 **On-Chain Verification** | All ownership verifiable on Mantle |
+| 📱 **Modern UI** | Sleek dashboard with real-time updates |
 
 ---
 
@@ -41,9 +105,9 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                          Accrue Protocol                                 │
+│                          ACCRUE PROTOCOL                                    │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                              │
+│                                                                             │
 │   ┌────────────────┐                         ┌────────────────────────────┐ │
 │   │                │                         │     REAL WORLD ASSETS      │ │
 │   │   User Wallet  │                         │     (ERC-1155 Tokens)      │ │
@@ -51,7 +115,7 @@
 │   │  ┌──────────┐  │    Principal            │  🏠 NYC Real Estate        │ │
 │   │  │   mETH   │──┼──────────────┐          │  📜 Treasury Bonds         │ │
 │   │  │ Holdings │  │              │          │  📑 Invoice Financing      │ │
-│   │  └──────────┘  │              ▼          │  🌱 Infrastructure         │ │
+│   │  └──────────┘  │              ▼          │  🌱 Green Infrastructure   │ │
 │   │                │    ┌─────────────────┐  │                            │ │
 │   │  ┌──────────┐  │    │                 │  └────────────────────────────┘ │
 │   │  │   RWA    │◄─┼────│   YieldVault    │                │                │
@@ -61,19 +125,16 @@
 │   └────────────────┘    │  │  Yield    │  │  ┌────────────────────────────┐ │
 │                         │  │  Tracker  │  │  │      Mantle DA             │ │
 │                         │  └───────────┘  │  │   (Legal Documents)        │ │
-│                         └─────────────────┘  │   - Property Deeds         │ │
-│                                              │   - Bond Certificates      │ │
-│                                              │   - Compliance Proofs      │ │
-│                                              └────────────────────────────┘ │
-│                                                                              │
+│                         └─────────────────┘  └────────────────────────────┘ │
+│                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
+> 📄 **For detailed technical architecture, see [ARCHITECTURE.md](ARCHITECTURE.md)**
+
 ---
 
-## 🌐 Mantle Ecosystem Alignment
-
-Accrue is **built specifically for Mantle Network**:
+## 🌐 Why Mantle?
 
 | Feature | Mantle Advantage |
 |---------|------------------|
@@ -84,74 +145,52 @@ Accrue is **built specifically for Mantle Network**:
 
 ---
 
-## 📦 Project Structure
-
-```
-Accrue/
-├── packages/
-│   ├── foundry/                    # Smart Contracts
-│   │   ├── contracts/
-│   │   │   ├── YieldVault.sol      # ERC-4626 vault with yield-to-RWA logic
-│   │   │   ├── RealWorldAsset.sol  # ERC-1155 fractionalized RWAs
-│   │   │   └── mocks/
-│   │   │       └── MockMETH.sol    # Mock mETH for testnet
-│   │   ├── script/
-│   │   │   └── Deploy.s.sol        # Deployment scripts
-│   │   ├── test/
-│   │   │   └── YieldVault.t.sol    # Test suite
-│   │   └── foundry.toml            # Foundry configuration
-│   │
-│   └── nextjs/                     # Frontend (Scaffold-ETH 2)
-│       ├── app/                    # Next.js 14 App Router
-│       ├── components/             # React components
-│       └── hooks/                  # Wagmi hooks
-│
-└── README.md
-```
-
----
-
-## 🔧 Smart Contracts
+## 📜 Smart Contracts
 
 ### YieldVault.sol (ERC-4626)
 
-The core protocol contract that:
-- Accepts mETH deposits
-- Tracks yield accrual in real-time
-- Converts yield to RWA purchases via `harvestAndBuy()`
-- Maintains 100% principal safety
+Core vault contract managing deposits and yield-to-RWA conversion.
 
-**Key Functions:**
-
-```solidity
-// Deposit mETH into the vault
-function deposit(uint256 assets, address receiver) returns (uint256 shares)
-
-// Harvest yield and buy RWA fractions
-function harvestAndBuy() returns (uint256 fractionsBought, uint256 yieldUsed)
-
-// Set which RWA to accumulate
-function setTargetAsset(uint256 assetId)
-
-// View pending yield and progress
-function getYieldProgress(address user) returns (
-    uint256 currentYield,
-    uint256 targetPrice,
-    uint256 progressBps,
-    uint256 fractionsEarned
-)
-```
+| Function | Description |
+|----------|-------------|
+| `deposit(assets, receiver)` | Deposit mETH into vault |
+| `withdraw(assets, receiver, owner)` | Withdraw principal |
+| `setTargetAsset(assetId)` | Choose target RWA type |
+| `harvestAndBuy()` | Convert yield to RWA fractions |
+| `getUserDashboard(user)` | Get user's complete stats |
+| `getYieldProgress(user)` | Get yield accumulation progress |
 
 ### RealWorldAsset.sol (ERC-1155)
 
-Fractionalized RWA tokens representing:
+Multi-token contract for fractionalized RWA ownership.
 
 | ID | Asset | Price/Fraction | APY |
 |----|-------|----------------|-----|
-| 1 | NYC Real Estate | 0.01 ETH | 4.5% |
-| 2 | Treasury Bonds | 0.001 ETH | 5.25% |
-| 3 | Invoice Financing | 0.005 ETH | 8.5% |
-| 4 | Infrastructure | 0.002 ETH | 6.5% |
+| 1 | 🏠 NYC Real Estate | 0.01 mETH | 4.5% |
+| 2 | 📜 Treasury Bonds | 0.001 mETH | 5.25% |
+| 3 | 📑 Invoice Financing | 0.005 mETH | 8.5% |
+| 4 | 🌱 Green Infrastructure | 0.002 mETH | 6.5% |
+
+---
+
+## 🛠 Tech Stack
+
+### Smart Contracts
+- **Solidity 0.8.24** - Smart contract language
+- **Foundry** - Development framework
+- **OpenZeppelin 5.x** - Security-audited libraries
+- **ERC-4626** - Tokenized vault standard
+- **ERC-1155** - Multi-token standard
+
+### Frontend
+- **Next.js 14** - React framework (App Router)
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Framer Motion** - Animations
+- **Wagmi v2** - React hooks for Ethereum
+- **Viem** - TypeScript Ethereum library
+- **RainbowKit v2** - Wallet connection
+- **react-hot-toast** - Notifications
 
 ---
 
@@ -159,55 +198,58 @@ Fractionalized RWA tokens representing:
 
 ### Prerequisites
 
-- [Foundry](https://getfoundry.sh/) installed
 - Node.js 18+
-- A wallet with testnet MNT ([Mantle Faucet](https://faucet.sepolia.mantle.xyz/))
+- [Foundry](https://getfoundry.sh/) installed
+- Wallet with testnet MNT ([Mantle Faucet](https://faucet.sepolia.mantle.xyz/))
 
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/your-username/Accrue
-cd Accrue/packages/foundry
+git clone https://github.com/karagozemin/Accrue
+cd Accrue
 
-# Install dependencies
-make install
+# Install frontend dependencies
+cd packages/nextjs
+npm install
+
+# Install contract dependencies
+cd ../foundry
+forge install
 ```
 
 ### 2. Configure Environment
 
 ```bash
+# Foundry (.env)
 cp env-example.txt .env
-# Edit .env with your private key
+# Edit with your private key
 ```
 
 ### 3. Build & Test
 
 ```bash
-make build
-make test
+# Run contract tests
+cd packages/foundry
+forge test -vvv
+
+# Start frontend
+cd ../nextjs
+npm run dev
 ```
 
-### 4. Deploy to Mantle Testnet
+### 4. Open App
 
-```bash
-make deploy-testnet
-```
+Navigate to `http://localhost:3000`
 
 ---
 
-## 📋 Deployment Guide
+## 📦 Deployment
 
-### Mantle Testnet Sepolia
-
-**Network Details:**
-- Chain ID: `5003`
-- RPC: `https://rpc.sepolia.mantle.xyz`
-- Explorer: `https://explorer.sepolia.mantle.xyz`
-- Faucet: `https://faucet.sepolia.mantle.xyz`
-
-**Deploy:**
+### Deploy to Mantle Sepolia
 
 ```bash
+cd packages/foundry
+
 forge script script/Deploy.s.sol:DeployAccrue \
   --rpc-url https://rpc.sepolia.mantle.xyz \
   --broadcast \
@@ -215,50 +257,98 @@ forge script script/Deploy.s.sol:DeployAccrue \
   -vvvv
 ```
 
-**Verify Contracts:**
+### Verify Contracts
 
 ```bash
-forge verify-contract <CONTRACT_ADDRESS> RealWorldAsset \
+forge verify-contract <ADDRESS> src/YieldVault.sol:YieldVault \
   --chain-id 5003 \
-  --verifier-url https://explorer.sepolia.mantle.xyz/api
+  --verifier-url https://api.sepolia.mantlescan.xyz/api
 ```
+
+---
+
+## 📍 Contract Addresses
+
+### Mantle Sepolia Testnet (Chain ID: 5003)
+
+| Contract | Address | Explorer |
+|----------|---------|----------|
+| **MockMETH** | `0xB7Ab966115aF7d21E7Aa6e31A9AdfC92291092E0` | [View](https://sepolia.mantlescan.xyz/address/0xB7Ab966115aF7d21E7Aa6e31A9AdfC92291092E0) |
+| **RealWorldAsset** | `0xa520c7Aa947f3B610d274377D261Eb5AcD70883F` | [View](https://sepolia.mantlescan.xyz/address/0xa520c7Aa947f3B610d274377D261Eb5AcD70883F) |
+| **YieldVault** | `0x9C70C2F67028e5464F5b60E29648240e358E83B6` | [View](https://sepolia.mantlescan.xyz/address/0x9C70C2F67028e5464F5b60E29648240e358E83B6) |
 
 ---
 
 ## 🎮 Demo Flow
 
-For hackathon demonstration:
+```
+1. 🔗 Connect Wallet
+   └── MetaMask → Add Mantle Sepolia Network
 
-```solidity
-// 1. Get mock mETH from faucet
-mockMETH.faucet(10 ether);
+2. 🚰 Get Test mETH
+   └── Click "Get 10 Test mETH" (1 hour cooldown)
 
-// 2. Approve vault
-mockMETH.approve(yieldVault, 10 ether);
+3. 💰 Deposit mETH
+   └── Enter amount → Approve → Deposit
 
-// 3. Deposit into vault
-yieldVault.deposit(10 ether, userAddress);
+4. 🎯 Select Target Asset
+   └── Choose: Real Estate / Bonds / Invoice Financing / Infrastructure
 
-// 4. Simulate yield (for demo speed)
-yieldVault.mockYield(0.05 ether);
+5. 🧪 Simulate Yield (Testnet)
+   └── Click "Simulate 0.01 mETH Yield"
 
-// 5. Harvest and buy RWA
-yieldVault.harvestAndBuy();
+6. 🏆 Harvest & Buy RWA
+   └── Click "Harvest & Buy RWA" → Receive fractions
 
-// 6. Check RWA portfolio
-rwaToken.getUserPortfolio(userAddress);
+7. 📊 View Portfolio
+   └── Check "RWA Portfolio" tab for holdings
 ```
 
 ---
 
-## 🔐 Security Considerations
+## 🧪 Testing
 
-| Risk | Mitigation |
-|------|------------|
-| Reentrancy | `ReentrancyGuard` on all state-changing functions |
-| Access Control | Role-based permissions (MINTER_ROLE, ASSET_MANAGER_ROLE) |
-| Principal Loss | User principal never leaves vault; only yield is used |
-| Oracle Manipulation | Fixed fraction prices (future: Chainlink integration) |
+```bash
+cd packages/foundry
+
+# Run all tests
+forge test
+
+# Run with verbosity
+forge test -vvv
+
+# Specific test file
+forge test --match-path test/YieldVault.t.sol
+
+# Gas report
+forge test --gas-report
+```
+
+### Test Coverage
+
+| Contract | Tests | Status |
+|----------|-------|--------|
+| YieldVault.sol | 13 | ✅ Pass |
+| RealWorldAsset.sol | 22 | ✅ Pass |
+| **Total** | **35** | **✅ All Pass** |
+
+---
+
+## 🔐 Security
+
+### Implemented Measures
+
+| Feature | Implementation |
+|---------|----------------|
+| Reentrancy Protection | OpenZeppelin `ReentrancyGuard` |
+| Access Control | `Ownable2Step` + role-based modifiers |
+| Pausability | Emergency pause on critical functions |
+| Safe Transfers | `SafeERC20` for all token ops |
+| Input Validation | Zero-checks on all parameters |
+
+### Audit Status
+
+⚠️ **Not Audited** - This is a hackathon project. Do not use in production without professional audit.
 
 ---
 
@@ -266,13 +356,17 @@ rwaToken.getUserPortfolio(userAddress);
 
 ### Phase 1: Hackathon MVP ✅
 - [x] ERC-4626 Yield Vault
-- [x] ERC-1155 RWA Tokens
+- [x] ERC-1155 RWA Tokens  
 - [x] Mock yield generation
-- [x] Basic dashboard UI
+- [x] Dashboard UI
+- [x] Portfolio View
+- [x] RWA Marketplace
+- [x] Mantle Sepolia deployment
+- [x] 35/35 tests passing
 
 ### Phase 2: Post-Hackathon
 - [ ] Real mETH yield integration
-- [ ] Chainlink price feeds for RWAs
+- [ ] Chainlink price feeds
 - [ ] Auto-compound option
 - [ ] Multi-asset DCA strategies
 
@@ -284,22 +378,20 @@ rwaToken.getUserPortfolio(userAddress);
 
 ---
 
-## 👥 Team
-
-Built with ❤️ for Mantle Global Hackathon 2025
-
----
-
 ## 📄 License
 
 MIT License - See [LICENSE](LICENSE) for details
 
 ---
 
-<div align="center">
+<p align="center">
+  <img src="packages/nextjs/public/logo.png" alt="Accrue" width="60"/>
+</p>
 
-**🏗️ Accrue - Build Real Wealth From Your Yield**
+<p align="center">
+  <b>Accrue - Build Real Wealth From Your Yield</b>
+</p>
 
-[Demo](https://Accrue.xyz) · [Docs](https://docs.Accrue.xyz) · [Twitter](https://twitter.com/Accrue)
-
-</div>
+<p align="center">
+  Made with ❤️ for Mantle Global Hackathon 2025
+</p>
